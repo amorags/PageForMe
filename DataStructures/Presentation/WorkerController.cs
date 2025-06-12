@@ -2,21 +2,32 @@ using System;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Any;
+using WorkerData.Services;
+using WorkerData.Services.Interfaces;
 
 
 namespace WorkerData.Controllers
 {
 
-[ApiController]
-[Route("[controller]")]
+    [ApiController]
+    [Route("[controller]")]
     public class WorkerController : ControllerBase
-
     {
 
-        [HttpGet]
-        public Task<Exception> GetError()
+        private readonly WorkerDataInterface _workerService;
+
+
+        public WorkerController(WorkerDataInterface workerData)
         {
-            throw new NotImplementedException();
+            _workerService = workerData;
+        }
+
+
+        [HttpGet]
+        public async Task<String[]> GetArray()
+        {
+            var Object = await _workerService.GetAllNames();
+            return Object;
         }
 
 
