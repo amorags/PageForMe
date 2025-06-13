@@ -3,6 +3,7 @@ using PageForMe.Data;
 using PageForMe.Services;
 using DataStructures.Services;
 using DataStructures.Services.Interfaces;
+using PageForMe.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Add custom services
 builder.Services.AddScoped<DataGeneratorService>();
 builder.Services.AddSingleton<IDataManager, DataManager>();
+builder.Services.AddSingleton<EmpRepo>();
 
 // Add CORS for development
 builder.Services.AddCors(options =>

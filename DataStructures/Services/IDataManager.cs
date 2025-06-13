@@ -1,9 +1,11 @@
 
 
+using PageForMe.Models;
+
 namespace DataStructures.Services.Interfaces
 {
     public interface IDataManager
     {
-        public String[] OrderByName();
+        Task<Dictionary<int, Employee>> OrderByName();
     }
 }
